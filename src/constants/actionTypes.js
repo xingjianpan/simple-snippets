@@ -7,3 +7,18 @@ export const SET_USER = 'SET_USER';
 // notification
 export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
+
+
+export const LIST_IS_LOADING = 'LIST_IS_LOADING';
+export const FETCH_LIST_SUCCESS = 'FETCH_LIST_SUCCESS';
+export const FETCH_LIST_FAILED = 'FETCH_LIST_FAILED';
+export const RESET_LIST = 'RESET_LIST';
+export const SET_IGNORE_LAST_FETCH = 'SET_IGNORE_LAST_FETCH';
+
+
+export const ADD_ITEM = 'ADD_NEW_ITEM';
+export const ITEM_IS_LOADING = 'ITEM_IS_LOADING';
+export const FETCH_ITEM_SUCCESS = 'FETCH_ITEM_SUCCESS';
+export const FETCH_ITEM_FAILED = 'FETCH_ITEM_FAILED';
+export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
