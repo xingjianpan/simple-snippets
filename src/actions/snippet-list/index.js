@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from '../../constants/actionTypes';
+import { SNIPPET_ROOT_URL } from '../../services/api';
 
 export const fetchListSuccess = (response) => {
   // console.log(response)
@@ -31,12 +32,12 @@ export const ListIsLoading = (bool) => {
   };
 };
 
-export const fetchList = (url) => {
+export const fetchList = (url = `${SNIPPET_ROOT_URL}/`) => {
   return (dispatch) => {
     dispatch(ListIsLoading(true));
 
     axios.get(url)
-      .then(response => {
+      .then((response) => {
         dispatch(fetchListSuccess(response))
       })
       .catch(() => dispatch(fetchListFailed(true)));
