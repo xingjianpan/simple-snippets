@@ -1,17 +1,17 @@
-import React from 'react'
-import Loading from 'react-loading'
+import React from 'react';
+import Loading from 'react-loading';
 import { browserHistory } from 'react-router';
 
 
-const SnippetItem = (snippet) => {
-  const { title, code } = snippet;
+const SnippetItem = ({ title, language, owner, onClick }) => {
   return (
-    <div>
-      <h2> {title} </h2>
-      <p> { code } </p>
+    <div className="card">
+      <div onClick={onClick}> <p>{title}</p> </div>
+      <div><p> { language }</p> </div>
+      <div>{owner}</div>
     </div>
-    )
-}
+  );
+};
 
 
 export default SnippetItem;

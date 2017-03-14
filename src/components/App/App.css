@@ -1,24 +1,21 @@
-.App {
-  text-align: center;
+.card-list {
+  width: 200px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  word-wrap: break-word;
+  overflow: auto;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
 
-.App-intro {
-  font-size: large;
-}
+.card{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items:baseline;
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

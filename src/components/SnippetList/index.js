@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SnippetItem from '../SnippetItem';
 
 const SnippetList = ({ snippets, onSnippetClick }) => (
-  <div>
+  <div className="card-list">
     {snippets.map(snippet =>
       <SnippetItem
         key={snippet.id}
@@ -13,4 +13,4 @@ const SnippetList = ({ snippets, onSnippetClick }) => (
   </div>
 );
 
-export default SnippetList
+export default SnippetList;
