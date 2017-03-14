@@ -32,7 +32,7 @@ export const ListIsLoading = (bool) => {
   };
 };
 
-export const fetchList = (url = `${SNIPPET_ROOT_URL}/`) => {
+export const fetchList = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
   return (dispatch) => {
     dispatch(ListIsLoading(true));
 

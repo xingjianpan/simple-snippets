@@ -20,21 +20,21 @@ class SnippetListContainer extends Component {
   }
 
 
-  postListRender() {
-    return(
+  render() {
+    return (
       <SnippetList
-        snippets = {this.props.snippets}
-        onSnippetClick = {() => {console.log('hi')}}
+        snippets={this.props.snippets}
+        onSnippetClick={() => {console.log('hi')}}
       />
     );
   }
 }
 
 const mapStateToPros = (state) => {
-  const { snippets } = state.snippets
-  // debugger
+  const { snippets } = state.snippet_list;
+  console.log(snippets);
   return {
-    snippets
+    snippets,
   };
 };
 
