@@ -6,5 +6,7 @@ export {
   signinUser,
   signoutUser,
   clearAuthError,
+  getUserDetails,
   hideNotification,
+
 };
