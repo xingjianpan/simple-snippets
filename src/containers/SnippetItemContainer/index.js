@@ -52,7 +52,7 @@ class SnippetItemContainer extends Component {
     return (
       <div>
         {this.renderEditor(snippet)}
-        <SnippetItem {...snippet} highlightCode={highlightCode} />
+        <SnippetItem snippet={snippet} highlightCode={highlightCode} />
       </div>
     );
   }
