@@ -13,7 +13,7 @@ export const addItem = ({ title, code, linenos, language, style, ispublic }) => 
     )
     .then((response) => {
       browserHistory.push('/');
-      dispatch(fetchList(SNIPPET_ROOT_URL));
+      dispatch(fetchList(`${SNIPPET_ROOT_URL}/snippets/`));
     });
   };
 };

@@ -35,7 +35,6 @@ const renderField = ({ input, name, label, type, textarea, meta: { touched, erro
 class AddSnippet extends Component {
 
   handleFormSubmit(formProps) {
-    console.log(formProps);
     this.props.addItem(formProps);
   }
 
@@ -67,9 +66,9 @@ class AddSnippet extends Component {
             <div>
               <Field name="language" component="select">
                 <option value='' disabled>Choose here</option>
-                <option value="python">Python</option>
+                <option value="python3">Python</option>
                 <option value="sql">SQL</option>
-                <option value="javascript">Javascript</option>
+                <option value="js">Javascript</option>
               </Field>
             </div>
           </div>
@@ -83,6 +82,7 @@ class AddSnippet extends Component {
                 <option value='' disabled>Choose here</option>
                 <option value="vim">vim</option>
                 <option value="friendly">friendly</option>
+                <option value="monokai">Monokai</option>
               </Field>
             </div>
           </div>
