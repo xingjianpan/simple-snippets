@@ -31,7 +31,7 @@ class SnippetItemContainer extends Component {
         return (
           <div>
             <button onClick={() => { this.handleEdit(); }}>Edit</button>
-            <button onClick={() => { this.props.deletePost(snippet); }}>Delete</button>
+            <button onClick={() => { this.props.deleteItem(snippet); }}>Delete</button>
           </div>
         );
       }

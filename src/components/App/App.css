@@ -1,4 +1,4 @@
-.card{
+.snippet-link .card{
   width: 200px;
   height: 200px;
   display: flex;
@@ -9,6 +9,19 @@
   word-wrap: break-word;
   overflow: auto;
 }
+
+.snippet-page .card{
+  min-width: 500px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  justify-content: flex-start;
+  align-items:baseline;
+  word-wrap: break-word;
+  overflow: auto;
+}
+
 
 .card-list {
   display: flex;

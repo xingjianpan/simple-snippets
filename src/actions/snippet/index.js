@@ -28,7 +28,7 @@ export const editItem = (item) => {
     )
     .then((response) => {
       dispatch(setIgnoreLastFetch(false));
-      browserHistory.push(`/post/${id}`);
+      browserHistory.push(`/snippet/${id}`);
     });
   };
 };

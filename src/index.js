@@ -8,6 +8,7 @@ import Signin from './components/Auth/Signin';
 import Signout from './components/Auth/Signout';
 import Signup from './components/Auth/Signup';
 import AddSnippet from './containers/AddSnippet';
+import EditSnippet from './containers/EditSnippet';
 import SnippetList from './containers/SnippetListContainer';
 import SnippetItem from './containers/SnippetItemContainer';
 import { getUserDetails } from './actions';
@@ -33,7 +34,7 @@ ReactDOM.render(
         <Route path="signup" component={Signup} />
         <Route path="snippet/:snippetId" component={SnippetItem} />
         <Route path="add-snippet" component={AddSnippet} />
-        <Route path="snippet/:snippetId/edit" component={()=>{}} />
+        <Route path="snippet/:snippetId/edit" component={EditSnippet} />
       </Route>
     </Router>
   </Provider>
