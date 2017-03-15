@@ -1,5 +1,5 @@
 .card-list {
-  width: 200px;
+  width: 300px;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -17,5 +17,25 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items:baseline;
+
+}
+
+
+.additem-form {
+  margin-left :40px;
+}
+
+fieldset > div > label {
+  min-width: 150px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.form-fields {
+  width: 400px;
+  display: flex;
+  flex-flow: row;
+  justify-content: left;
+
 
 }

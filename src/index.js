@@ -7,6 +7,7 @@ import requireAuth from './components/Auth/require_authentication';
 import Signin from './components/Auth/Signin';
 import Signout from './components/Auth/Signout';
 import Signup from './components/Auth/Signup';
+import AddSnippet from './containers/AddSnippet';
 import SnippetList from './containers/SnippetListContainer';
 import { getUserDetails } from './actions';
 import configureStore from './stores/configureStore';
@@ -29,6 +30,7 @@ ReactDOM.render(
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
+        <Route path="add-snippet" component={AddSnippet} />
       </Route>
     </Router>
   </Provider>

@@ -7,7 +7,7 @@ import { fetchList, setIgnoreLastFetch } from '../../actions/snippet-list';
 export const addItem = ({ title, code, linenos, language, style, ispublic }) => {
   return (dispatch) => {
     axios.post(
-      `${SNIPPET_ROOT_URL}/`,
+      `${SNIPPET_ROOT_URL}/snippets/`,
       { title, code, linenos, language, style, ispublic },
       { headers: { Authorization: `Token ${localStorage.getItem('token')}` } },
     )
@@ -22,7 +22,7 @@ export const editItem = (item) => {
   const { id, title, code, linenos, language, style, ispublic } = item;
   return (dispatch) => {
     axios.put(
-      `${SNIPPET_ROOT_URL}/${id}/`,
+      `${SNIPPET_ROOT_URL}/snippets/${id}/`,
       { title, code, linenos, language, style, ispublic },
       { headers: { Authorization: `Token ${localStorage.getItem('token')}` } },
     )
@@ -38,7 +38,7 @@ export const deleteItem = (item) => {
   return (dispatch) => {
     //  The second parameter to axios.delete is config, not data
     axios.delete(
-      `${SNIPPET_ROOT_URL}/${item.id}/`,
+      `${SNIPPET_ROOT_URL}/snippets/${item.id}/`,
       { headers: { Authorization: `Token ${localStorage.getItem('token')}`} },
     ).then(() => {
       browserHistory.push('/');
@@ -75,7 +75,7 @@ export const fetchItem = (id) => {
   return (dispatch) => {
     dispatch(ItemIsLoading(true));
 
-    axios.get(`${SNIPPET_ROOT_URL}/${id}/`)
+    axios.get(`${SNIPPET_ROOT_URL}/snippets/${id}/`)
       .then(response => dispatch(fetchItemSuccess(response)))
       .catch(()=> dispatch(fetchItemFailed(true)));
   };

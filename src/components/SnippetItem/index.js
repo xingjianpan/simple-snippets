@@ -6,8 +6,8 @@ import { browserHistory } from 'react-router';
 const SnippetItem = ({ title, language, owner, onClick }) => {
   return (
     <div className="card">
-      <div onClick={onClick}> <p>{title}</p> </div>
-      <div><p> { language }</p> </div>
+      <div onClick={onClick}>{title}</div>
+      <div>{language}</div>
       <div>{owner}</div>
     </div>
   );

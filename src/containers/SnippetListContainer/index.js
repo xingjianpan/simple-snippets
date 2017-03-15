@@ -32,7 +32,6 @@ class SnippetListContainer extends Component {
 
 const mapStateToPros = (state) => {
   const { snippets } = state.snippet_list;
-  console.log(snippets);
   return {
     snippets,
   };
