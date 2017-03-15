@@ -14,7 +14,7 @@ import SnippetItem from './containers/SnippetItemContainer';
 import { getUserDetails } from './actions';
 import configureStore from './stores/configureStore';
 // css
-// import './index.css';
+import './index.css';
 const store = configureStore();
 const token = localStorage.getItem('token');
 // if we have a token, consider the use to be signin

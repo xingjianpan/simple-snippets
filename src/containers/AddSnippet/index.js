@@ -61,6 +61,9 @@ class AddSnippet extends Component {
           <Field label="Code" name="code" component={renderField} type="text" textarea={true} />
         </fieldset>
         <fieldset className="form-group">
+          <Field label="Description" name="description" component={renderField} type="text" textarea={true} />
+        </fieldset>
+        <fieldset className="form-group">
           <div className="form-fields">
             <label htmlFor="language">Language</label>
             <div>

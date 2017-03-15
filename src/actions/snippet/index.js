@@ -4,11 +4,11 @@ import * as actionTypes from '../../constants/actionTypes';
 import { SNIPPET_ROOT_URL } from '../../services/api';
 import { fetchList, setIgnoreLastFetch } from '../../actions/snippet-list';
 
-export const addItem = ({ title, code, linenos, language, style, ispublic }) => {
+export const addItem = ({ title, code, linenos, language, style, ispublic, description }) => {
   return (dispatch) => {
     axios.post(
       `${SNIPPET_ROOT_URL}/snippets/`,
-      { title, code, linenos, language, style, ispublic },
+      { title, code, linenos, language, style, ispublic, description },
       { headers: { Authorization: `Token ${localStorage.getItem('token')}` } },
     )
     .then((response) => {
@@ -19,11 +19,11 @@ export const addItem = ({ title, code, linenos, language, style, ispublic }) => 
 };
 
 export const editItem = (item) => {
-  const { id, title, code, linenos, language, style, ispublic } = item;
+  const { id, title, code, linenos, language, style, ispublic, description } = item;
   return (dispatch) => {
     axios.put(
       `${SNIPPET_ROOT_URL}/snippets/${id}/`,
-      { title, code, linenos, language, style, ispublic },
+      { title, code, linenos, language, style, ispublic, description },
       { headers: { Authorization: `Token ${localStorage.getItem('token')}` } },
     )
     .then((response) => {
