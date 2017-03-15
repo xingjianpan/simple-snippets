@@ -71,12 +71,30 @@ export const ItemIsLoading = (bool) => {
   };
 };
 
+export const fetchHighlight = (url) => {
+  return (dispatch) => {
+    axios.get(url)
+      .then(response => dispatch(fetchHighlightSuccess(response)));
+  };
+};
+
+export const fetchHighlightSuccess = (response) => {
+  // console.log(response)
+  return {
+    type: actionTypes.FETCH_HIGHLIGHT_SUCCESS,
+    payload: response,
+  };
+};
+
 export const fetchItem = (id) => {
   return (dispatch) => {
     dispatch(ItemIsLoading(true));
 
     axios.get(`${SNIPPET_ROOT_URL}/snippets/${id}/`)
-      .then(response => dispatch(fetchItemSuccess(response)))
+      .then((response) => {
+        dispatch(fetchItemSuccess(response));
+        dispatch(fetchHighlight(response.data.highlight));
+      })
       .catch(()=> dispatch(fetchItemFailed(true)));
   };
 };

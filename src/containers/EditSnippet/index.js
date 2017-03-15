@@ -73,7 +73,7 @@ class EditSnippet extends Component {
                 <option value='' disabled>Choose here</option>
                 <option value="python">Python</option>
                 <option value="sql">SQL</option>
-                <option value="javascript">Javascript</option>
+                <option value="js">Javascript</option>
               </Field>
             </div>
           </div>
@@ -87,6 +87,7 @@ class EditSnippet extends Component {
                 <option value='' disabled>Choose here</option>
                 <option value="vim">vim</option>
                 <option value="friendly">friendly</option>
+                <option value="monokai">Monokai</option>
               </Field>
             </div>
           </div>

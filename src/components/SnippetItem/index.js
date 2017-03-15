@@ -1,17 +1,14 @@
 import React from 'react';
+import Frame from 'react-frame-component';
 
 
-
-const SnippetItem = ({ title, language, owner, code, onClick }) => {
+const SnippetItem = ({ title, language, owner, code, onClick, highlightCode }) => {
   return (
     <div className="snippet-page">
-      <div className="card">
-        <div className="card-block">
-          <h4 className="card-title" onClick={onClick}>{title}</h4>
-          <p className="card-text">{language}</p>
-          <p className="card-text">{code} </p>
-          <div className="card-text">{owner}</div>
-        </div>
+      <div className="embed-responsive embed-responsive-16by9">
+        <Frame className="embed-responsive-item" >
+          <div dangerouslySetInnerHTML={{ __html: highlightCode }} />
+        </Frame>
       </div>
     </div>
   );

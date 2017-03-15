@@ -41,6 +41,7 @@ class SnippetItemContainer extends Component {
 
   render() {
     const snippet = this.props.snippet;
+    const highlightCode = this.props.highlightCode;
     if (this.props.hasErrored) {
       return <p>抱歉，请刷新浏览器后再试试。</p>;
     }
@@ -50,20 +51,21 @@ class SnippetItemContainer extends Component {
     document.title = this.props.snippet.title;
     return (
       <div>
-        <SnippetItem {...snippet} />
         {this.renderEditor(snippet)}
+        <SnippetItem {...snippet} highlightCode={highlightCode} />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { isLoading, snippet, hasErrored } = state.snippet;
+  const { isLoading, snippet, hasErrored, highlightCode } = state.snippet;
   const { authenticated, user } = state.auth;
   // console.log(snippet)
   return {
     isLoading,
     snippet,
+    highlightCode,
     hasErrored,
     authenticated,
     user,

@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   isLoading: true,
   snippet: {},
   hasErrored: false,
+  highlightCode: '',
 };
 
 
@@ -16,6 +17,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, snippet: action.payload.data, isLoading: false };
     case actionTypes.FETCH_ITEM_FAILED:
       return { ...state, hasErrored: true };
+    case actionTypes.FETCH_HIGHLIGHT_SUCCESS:
+      return { ...state, highlightCode: action.payload.data };
     default:
       return state;
   }
