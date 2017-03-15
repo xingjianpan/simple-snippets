@@ -1,14 +1,16 @@
 import React from 'react';
-import Loading from 'react-loading';
-import { browserHistory } from 'react-router';
 
 
-const SnippetItem = ({ title, language, owner, onClick }) => {
+
+const SnippetItem = ({ title, language, owner, code, onClick }) => {
   return (
     <div className="card">
-      <div onClick={onClick}>{title}</div>
-      <div>{language}</div>
-      <div>{owner}</div>
+      <div className="card-block">
+        <h4 className="card-title" onClick={onClick}>{title}</h4>
+        <p className="card-text">{language}</p>
+        <p className="card-text">{code} </p>
+        <div className="card-text">{owner}</div>
+      </div>
     </div>
   );
 };

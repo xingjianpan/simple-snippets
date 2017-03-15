@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import SnippetItem from '../SnippetItem';
+import SnippetLink from '../SnippetLink';
 
 const SnippetList = ({ snippets, onSnippetClick }) => (
   <div className="card-list">
     {snippets.map(snippet =>
-      <SnippetItem
+      <SnippetLink
         key={snippet.id}
         {...snippet}
         onClick={() => onSnippetClick(snippet.id)}

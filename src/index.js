@@ -9,6 +9,7 @@ import Signout from './components/Auth/Signout';
 import Signup from './components/Auth/Signup';
 import AddSnippet from './containers/AddSnippet';
 import SnippetList from './containers/SnippetListContainer';
+import SnippetItem from './containers/SnippetItemContainer';
 import { getUserDetails } from './actions';
 import configureStore from './stores/configureStore';
 // css
@@ -30,7 +31,9 @@ ReactDOM.render(
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
+        <Route path="snippet/:snippetId" component={SnippetItem} />
         <Route path="add-snippet" component={AddSnippet} />
+        <Route path="snippet/:snippetId/edit" component={()=>{}} />
       </Route>
     </Router>
   </Provider>

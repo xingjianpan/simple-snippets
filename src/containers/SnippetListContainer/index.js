@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchList, setIgnoreLastFetch } from '../../actions';
 import SnippetList from '../../components/SnippetList';
+import { browserHistory } from 'react-router';
 
 class SnippetListContainer extends Component {
   componentDidMount() {
@@ -24,7 +25,9 @@ class SnippetListContainer extends Component {
     return (
       <SnippetList
         snippets={this.props.snippets}
-        onSnippetClick={() => {console.log('hi')}}
+        onSnippetClick={(id) => {
+          browserHistory.push(`snippet/${id}`);
+        }}
       />
     );
   }
