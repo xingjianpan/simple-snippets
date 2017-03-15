@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
     case actionTypes.ITEM_IS_LOADING:
       return { ...state, isLoading: true };
     case actionTypes.FETCH_ITEM_SUCCESS:
-      return { ...state, snippet: action.payload.data, isLoading: false };
+      return { ...state, snippet: action.payload.data, isLoading: false, highlightCode: '' };
     case actionTypes.FETCH_ITEM_FAILED:
       return { ...state, hasErrored: true };
     case actionTypes.FETCH_HIGHLIGHT_SUCCESS:
