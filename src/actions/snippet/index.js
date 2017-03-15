@@ -71,12 +71,6 @@ export const ItemIsLoading = (bool) => {
   };
 };
 
-export const fetchHighlight = (url) => {
-  return (dispatch) => {
-    axios.get(url)
-      .then(response => dispatch(fetchHighlightSuccess(response)));
-  };
-};
 
 export const fetchHighlightSuccess = (response) => {
   // console.log(response)
@@ -90,11 +84,14 @@ export const fetchItem = (id) => {
   return (dispatch) => {
     dispatch(ItemIsLoading(true));
 
-    axios.get(`${SNIPPET_ROOT_URL}/snippets/${id}/`)
-      .then((response) => {
-        dispatch(fetchItemSuccess(response));
-        dispatch(fetchHighlight(response.data.highlight));
-      })
+    axios.all([
+      axios.get(`${SNIPPET_ROOT_URL}/snippets/${id}/`),
+      axios.get(`${SNIPPET_ROOT_URL}/snippets/${id}/highlight/`),
+    ])
+      .then(axios.spread(function (snippetResponse, highlightResponse) {
+        dispatch(fetchItemSuccess(snippetResponse));
+        dispatch(fetchHighlightSuccess(highlightResponse));
+      }))
       .catch(()=> dispatch(fetchItemFailed(true)));
   };
 };

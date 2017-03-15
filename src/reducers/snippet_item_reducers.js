@@ -12,9 +12,9 @@ export default (state = INITIAL_STATE, action) => {
   // console.log('action: ', action);
   switch (action.type) {
     case actionTypes.ITEM_IS_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, highlightCode: '' };
     case actionTypes.FETCH_ITEM_SUCCESS:
-      return { ...state, snippet: action.payload.data, isLoading: false, highlightCode: '' };
+      return { ...state, snippet: action.payload.data, isLoading: false };
     case actionTypes.FETCH_ITEM_FAILED:
       return { ...state, hasErrored: true };
     case actionTypes.FETCH_HIGHLIGHT_SUCCESS:
