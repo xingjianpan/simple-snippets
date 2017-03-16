@@ -32,7 +32,7 @@ export const ListIsLoading = (bool) => {
   };
 };
 
-export const fetchList = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
+export const fetchList = (url = `${SNIPPET_ROOT_URL}/`) => {
   return (dispatch) => {
     dispatch(ListIsLoading(true));
 
@@ -75,7 +75,7 @@ export const infiniteLoadEndOfList = (response) => {
   };
 };
 
-export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
+export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/`) => {
   return (dispatch) => {
     dispatch(infiniteLoading(true));
     axios.get(url)

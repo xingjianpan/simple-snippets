@@ -7,13 +7,13 @@ import { fetchList, setIgnoreLastFetch } from '../../actions/snippet-list';
 export const addItem = ({ title, code, linenos, language, style, ispublic, description }) => {
   return (dispatch) => {
     axios.post(
-      `${SNIPPET_ROOT_URL}/snippets/`,
+      `${SNIPPET_ROOT_URL}/`,
       { title, code, linenos, language, style, ispublic, description },
       { headers: { Authorization: `Token ${localStorage.getItem('token')}` } },
     )
     .then((response) => {
       browserHistory.push('/');
-      dispatch(fetchList(`${SNIPPET_ROOT_URL}/snippets/`));
+      dispatch(fetchList(`${SNIPPET_ROOT_URL}/`));
     });
   };
 };
@@ -22,7 +22,7 @@ export const editItem = (item) => {
   const { id, title, code, linenos, language, style, ispublic, description } = item;
   return (dispatch) => {
     axios.put(
-      `${SNIPPET_ROOT_URL}/snippets/${id}/`,
+      `${SNIPPET_ROOT_URL}/${id}/`,
       { title, code, linenos, language, style, ispublic, description },
       { headers: { Authorization: `Token ${localStorage.getItem('token')}` } },
     )
@@ -38,7 +38,7 @@ export const deleteItem = (item) => {
   return (dispatch) => {
     //  The second parameter to axios.delete is config, not data
     axios.delete(
-      `${SNIPPET_ROOT_URL}/snippets/${item.id}/`,
+      `${SNIPPET_ROOT_URL}/${item.id}/`,
       { headers: { Authorization: `Token ${localStorage.getItem('token')}`} },
     ).then(() => {
       browserHistory.push('/');
@@ -85,8 +85,8 @@ export const fetchItem = (id) => {
     dispatch(ItemIsLoading(true));
 
     axios.all([
-      axios.get(`${SNIPPET_ROOT_URL}/snippets/${id}/`),
-      axios.get(`${SNIPPET_ROOT_URL}/snippets/${id}/highlight/`),
+      axios.get(`${SNIPPET_ROOT_URL}/${id}/`),
+      axios.get(`${SNIPPET_ROOT_URL}/${id}/highlight/`),
     ])
       .then(axios.spread(function (snippetResponse, highlightResponse) {
         dispatch(fetchItemSuccess(snippetResponse));
