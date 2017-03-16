@@ -9,7 +9,7 @@ import SnippetLink from '../../components/SnippetLink';
 class SnippetListContainer extends Component {
   componentDidMount() {
     if (!this.props.ignoreLastFetch) {
-      this.props.fetchList();
+      this.props.fetchList(this.props.targetUrl);
     }
   }
 

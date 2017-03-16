@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from '../../constants/actionTypes';
-import { SNIPPET_ROOT_URL } from '../../services/api';
+import { SNIPPET_ROOT_URL, USER_SNIPPETS_URL, PUBLIC_SNIPPETS_URL } from '../../services/api';
 
 export const fetchListSuccess = (response) => {
   // console.log(response)
@@ -36,7 +36,7 @@ export const fetchList = (url = `${SNIPPET_ROOT_URL}/`) => {
   return (dispatch) => {
     dispatch(ListIsLoading(true));
 
-    axios.get(url)
+    axios.get(url, { headers: { Authorization: `Token ${localStorage.getItem('token')}` } })
       .then((response) => {
         dispatch(fetchListSuccess(response))
       })
@@ -78,7 +78,7 @@ export const infiniteLoadEndOfList = (response) => {
 export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/`) => {
   return (dispatch) => {
     dispatch(infiniteLoading(true));
-    axios.get(url)
+    axios.get(url, { headers: { Authorization: `Token ${localStorage.getItem('token')}` } })
       .then((response) => {
         if (response.data.next) {
           dispatch(infiniteLoadSuccess(response));

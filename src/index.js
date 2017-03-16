@@ -9,12 +9,14 @@ import Signout from './components/Auth/Signout';
 import Signup from './components/Auth/Signup';
 import AddSnippet from './containers/AddSnippet';
 import EditSnippet from './containers/EditSnippet';
-import SnippetList from './containers/SnippetListContainer';
 import SnippetItem from './containers/SnippetItemContainer';
+import UserSnippets from './containers/UserSnippetsContainer';
+import PublicSnippets from './containers/PublicSnippetsContainer';
 import { getUserDetails } from './actions';
 import configureStore from './stores/configureStore';
 // css
 import './index.css';
+
 const store = configureStore();
 const token = localStorage.getItem('token');
 // if we have a token, consider the use to be signin
@@ -28,13 +30,14 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={SnippetList} />
+        <IndexRoute component={PublicSnippets} />
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
         <Route path="snippet/:snippetId" component={SnippetItem} />
         <Route path="add-snippet" component={requireAuth(AddSnippet)} />
         <Route path="snippet/:snippetId/edit" component={requireAuth(EditSnippet)} />
+        <Route path="test" component={UserSnippets} />
       </Route>
     </Router>
   </Provider>
