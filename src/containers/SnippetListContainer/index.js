@@ -50,7 +50,6 @@ class SnippetListContainer extends Component {
   }
 
   handleInfiniteLoad(url) {
-    console.log(url);
     if (this.props.hasMoreToLoad) {
       this.props.infiniteLoad(url);
     };
@@ -63,6 +62,9 @@ class SnippetListContainer extends Component {
   renderEndOfList() {
     if (!this.props.hasMoreToLoad) {
       return <div> End of list </div>;
+    }
+    if (this.props.infiniteLoadHasError) {
+      return <div> Error loading more items</div>;
     }
     return ;
   }

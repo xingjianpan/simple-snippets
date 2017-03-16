@@ -12,6 +12,7 @@ const INITIAL_STATE = {
   error: '',
   isInfiniteLoading: false,
   hasMoreToLoad: true,
+  infiniteLoadHasError: false,
 };
 
 
@@ -49,6 +50,8 @@ export default (state = INITIAL_STATE, action) => {
         hasMoreToLoad: false,
         snippets: [...state.snippets, ...action.payload.data.results],
       };
+    case actionTypes.INFINITE_LOAD_FAIL:
+      return { ...state, infiniteLoadHasError: true };
     default:
       return state;
   }

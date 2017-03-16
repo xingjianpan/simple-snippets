@@ -54,6 +54,13 @@ export const infiniteLoadSuccess = (response) => {
 };
 
 
+export const infiniteLoadFailed = (bool) => {
+  return {
+    type: actionTypes.INFINITE_LOAD_FAIL,
+    payload: bool,
+  };
+};
+
 export const infiniteLoading = (bool) => {
   return {
     type: actionTypes.INFINITE_IS_LOADING,
@@ -78,7 +85,9 @@ export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
         } else {
           dispatch(infiniteLoadEndOfList(response));
         }
-      });
+      })
+      .catch(() => dispatch(infiniteLoadFailed(true)))
+      ;
   };
 };
 
