@@ -69,7 +69,7 @@ class SnippetListContainer extends Component {
     document.title = 'Snippets Management';
     return (
       <Infinite
-        elementHeight={100}
+        elementHeight={150}
         containerHeight={300}
         useWindowAsScrollContainer
         infiniteLoadBeginEdgeOffset={60}
@@ -77,15 +77,15 @@ class SnippetListContainer extends Component {
         loadingSpinnerDelegate={this.elementInfiniteLoad()}
         isInfiniteLoading={this.props.isInfiniteLoading}
         timeScrollStateLastsForAfterUserScrolls={1000}
+        className="main"
       >
-      {this.props.snippets.map(snippet =>
-        <SnippetLink
-          key={snippet.id}
-          {...snippet}
-
-        />,
-      )}
-
+        {this.props.snippets.map(snippet =>
+          <SnippetLink
+            key={snippet.id}
+            {...snippet}
+            onClick={(id) => { browserHistory.push(`snippet/${snippet.id}`); }}
+          />,
+        )}
       </Infinite>
     );
   }
