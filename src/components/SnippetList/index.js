@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SnippetLink from '../SnippetLink';
 
 const SnippetList = ({ snippets, onSnippetClick }) => (

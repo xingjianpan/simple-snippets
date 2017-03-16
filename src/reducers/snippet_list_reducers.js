@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   prevHref: null,
   ignoreLastFetch: null,
   error: '',
+  isInfiniteLoading: false,
 };
 
 
@@ -32,6 +33,15 @@ export default (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case actionTypes.SET_IGNORE_LAST_FETCH:
       return { ...state, ignoreLastFetch: action.payload };
+
+    case actionTypes.INFINITE_IS_LOADING:
+      return { ...state, isInfiniteLoading: action.payload }
+    case actionTypes.INFINITE_LOAD_SUCCESS:
+      return { ...state,
+        isInfiniteLoading: false,
+        snippets: [...state.snippets, ...action.payload.data.results],
+        nextHref: action.payload.data.next,
+      };
     default:
       return state;
   }

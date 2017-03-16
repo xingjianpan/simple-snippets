@@ -1,6 +1,6 @@
 import { signupUser, signinUser, signoutUser, clearAuthError, getUserDetails } from './auth';
 import { hideNotification } from './notification';
-import { fetchList, setIgnoreLastFetch } from './snippet-list';
+import { fetchList, setIgnoreLastFetch, infiniteLoad} from './snippet-list';
 import { addItem, editItem, deleteItem, fetchItem } from './snippet';
 
 export {
@@ -16,5 +16,5 @@ export {
   editItem,
   deleteItem,
   fetchItem,
-
+  infiniteLoad,
 };

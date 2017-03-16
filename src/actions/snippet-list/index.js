@@ -40,7 +40,34 @@ export const fetchList = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
       .then((response) => {
         dispatch(fetchListSuccess(response))
       })
-      .catch(() => dispatch(fetchListFailed(true)));
+      .catch(
+        (error) => dispatch(fetchListFailed(true))
+    );
+  };
+};
+
+export const infiniteLoadSuccess = (response) => {
+  return {
+    type: actionTypes.INFINITE_LOAD_SUCCESS,
+    payload: response,
+  };
+};
+
+
+export const infiniteLoading = (bool) => {
+  return {
+    type: actionTypes.INFINITE_IS_LOADING,
+    payload: bool,
+  };
+};
+
+export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
+  return (dispatch) => {
+    dispatch(infiniteLoading(true));
+    axios.get(url)
+      .then((response) => {
+        dispatch(infiniteLoadSuccess(response));
+      });
   };
 };
 

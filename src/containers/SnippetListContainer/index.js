@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Loading from 'react-loading';
+import Infinite from 'react-infinite';
 import { browserHistory } from 'react-router';
-import { fetchList, setIgnoreLastFetch } from '../../actions';
-import SnippetList from '../../components/SnippetList';
-import { hideNotification } from '../../actions';
+import { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad } from '../../actions';
+import SnippetLink from '../../components/SnippetLink';
 
 class SnippetListContainer extends Component {
   componentDidMount() {
@@ -49,6 +49,15 @@ class SnippetListContainer extends Component {
     return <p></p>;
   }
 
+  handleInfiniteLoad(url) {
+    console.log(url)
+    this.props.infiniteLoad(url);
+  }
+
+  elementInfiniteLoad() {
+    return <div className="infinite-list-item"> Loading... </div>;
+  }
+
 
   render() {
     if (this.props.hasErrored) {
@@ -59,15 +68,25 @@ class SnippetListContainer extends Component {
     }
     document.title = 'Snippets Management';
     return (
-      <div>
-        <SnippetList
-          snippets={this.props.snippets}
-          onSnippetClick={(id) => {
-            browserHistory.push(`snippet/${id}`);
-          }}
-        />
-        {this.renderButton()}
-      </div>
+      <Infinite
+        elementHeight={100}
+        containerHeight={300}
+        useWindowAsScrollContainer
+        infiniteLoadBeginEdgeOffset={60}
+        onInfiniteLoad={() =>{ this.handleInfiniteLoad(this.props.nextHref) }}
+        loadingSpinnerDelegate={this.elementInfiniteLoad()}
+        isInfiniteLoading={this.props.isInfiniteLoading}
+        timeScrollStateLastsForAfterUserScrolls={1000}
+      >
+      {this.props.snippets.map(snippet =>
+        <SnippetLink
+          key={snippet.id}
+          {...snippet}
+
+        />,
+      )}
+
+      </Infinite>
     );
   }
 }
@@ -75,8 +94,10 @@ class SnippetListContainer extends Component {
 const mapStateToPros = (state) => {
   const { snippets, isLoading, hasErrored,
           nextHref, prevHref, ignoreLastFetch,
+          isInfiniteLoading,
         } = state.snippet_list;
   const { isActive, message, action } = state.notifications;
+
   return {
     isLoading,
     snippets,
@@ -87,9 +108,10 @@ const mapStateToPros = (state) => {
     isActive,
     message,
     action,
+    isInfiniteLoading,
   };
 };
 
 export default connect(mapStateToPros,
-  { fetchList, setIgnoreLastFetch, hideNotification })(SnippetListContainer);
+  { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad })(SnippetListContainer);
 
