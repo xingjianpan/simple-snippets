@@ -13,12 +13,6 @@ class SnippetListContainer extends Component {
     }
   }
 
-  componentWillUnmount() {
-    // this.props.resetNewsList();
-    this.props.setIgnoreLastFetch(true);
-  }
-
-
   handleInfiniteLoad(url) {
     if (this.props.hasMoreToLoad) {
       this.props.infiniteLoad(url);
@@ -76,7 +70,7 @@ class SnippetListContainer extends Component {
 
 const mapStateToPros = (state) => {
   const { snippets, isLoading, hasErrored,
-          nextHref, prevHref, ignoreLastFetch,
+          nextHref, prevHref,
           isInfiniteLoading, hasMoreToLoad,
         } = state.snippet_list;
   const { isActive, message, action } = state.notifications;
@@ -87,7 +81,6 @@ const mapStateToPros = (state) => {
     hasErrored,
     nextHref,
     prevHref,
-    ignoreLastFetch,
     isActive,
     message,
     action,

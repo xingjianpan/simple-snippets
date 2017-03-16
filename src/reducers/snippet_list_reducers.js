@@ -8,7 +8,6 @@ const INITIAL_STATE = {
   hasErrored: false,
   nextHref: null,
   prevHref: null,
-  ignoreLastFetch: null,
   error: '',
   isInfiniteLoading: false,
   hasMoreToLoad: true,
@@ -27,14 +26,11 @@ export default (state = INITIAL_STATE, action) => {
         isLoading: false,
         nextHref: action.payload.data.next,
         prevHref: action.payload.data.previous,
-        ignoreLastFetch: false,
       };
     case actionTypes.FETCH_LIST_FAILED:
       return { ...state, hasErrored: true };
     case actionTypes.RESET_LIST:
       return INITIAL_STATE;
-    case actionTypes.SET_IGNORE_LAST_FETCH:
-      return { ...state, ignoreLastFetch: action.payload };
 
     case actionTypes.INFINITE_IS_LOADING:
       return { ...state, isInfiniteLoading: action.payload };

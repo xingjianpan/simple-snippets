@@ -12,9 +12,17 @@ class Header extends Component {
     if (this.props.authenticated) {
       // show a link to sign out
       return (
-        <li className="nav-item">
+        [
+        <li className="nav-item" key={2}>
+          <Link className="nav-link" to="/snippets/add">Add Snippet</Link>
+        </li>,
+        <li className="nav-item" key={3}>
+          <Link className="nav-link" to="/snippets/my">My Snippets</Link>
+        </li>,
+        <li className="nav-item" key={1}>
           <Link className="nav-link" to="/signout">Sign Out</Link>
-        </li>
+        </li>,
+        ]
       );
     }
     return (
@@ -34,9 +42,7 @@ class Header extends Component {
       <nav className="navbar navbar-light">
         <Link to="/" className="navbar-brand">Home</Link>
         <ul className="nav navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link" to="/add-snippet">Add Snippet</Link>
-          </li>
+
           {this.authButton()}
         </ul>
       </nav>

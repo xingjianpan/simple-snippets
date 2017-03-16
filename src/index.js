@@ -35,9 +35,9 @@ ReactDOM.render(
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
         <Route path="snippet/:snippetId" component={SnippetItem} />
-        <Route path="add-snippet" component={requireAuth(AddSnippet)} />
+        <Route path="snippets/add" component={requireAuth(AddSnippet)} />
         <Route path="snippet/:snippetId/edit" component={requireAuth(EditSnippet)} />
-        <Route path="test" component={UserSnippets} />
+        <Route path="snippets/my" component={UserSnippets} />
       </Route>
     </Router>
   </Provider>
