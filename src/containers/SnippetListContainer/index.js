@@ -50,8 +50,10 @@ class SnippetListContainer extends Component {
   }
 
   handleInfiniteLoad(url) {
-    console.log(url)
-    this.props.infiniteLoad(url);
+    console.log(url);
+    if (this.props.hasMoreToLoad) {
+      this.props.infiniteLoad(url);
+    };
   }
 
   elementInfiniteLoad() {
@@ -74,7 +76,7 @@ class SnippetListContainer extends Component {
         useWindowAsScrollContainer
         infiniteLoadBeginEdgeOffset={60}
         onInfiniteLoad={() =>{ this.handleInfiniteLoad(this.props.nextHref) }}
-        loadingSpinnerDelegate={this.elementInfiniteLoad()}
+        loadingSpinnerDelegate={this.props.isInfiniteLoading && this.elementInfiniteLoad()}
         isInfiniteLoading={this.props.isInfiniteLoading}
         timeScrollStateLastsForAfterUserScrolls={1000}
         className="main"
@@ -94,7 +96,7 @@ class SnippetListContainer extends Component {
 const mapStateToPros = (state) => {
   const { snippets, isLoading, hasErrored,
           nextHref, prevHref, ignoreLastFetch,
-          isInfiniteLoading,
+          isInfiniteLoading, hasMoreToLoad,
         } = state.snippet_list;
   const { isActive, message, action } = state.notifications;
 
@@ -109,6 +111,7 @@ const mapStateToPros = (state) => {
     message,
     action,
     isInfiniteLoading,
+    hasMoreToLoad,
   };
 };
 

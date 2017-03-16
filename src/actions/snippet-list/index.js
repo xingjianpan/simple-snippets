@@ -66,7 +66,11 @@ export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
     dispatch(infiniteLoading(true));
     axios.get(url)
       .then((response) => {
-        dispatch(infiniteLoadSuccess(response));
+        if (response.data.next) {
+          dispatch(infiniteLoadSuccess(response));
+        } else {
+          dispatch({ type: actionTypes.INFINITE_LOAD_END_OF_LIST });
+        }
       });
   };
 };
