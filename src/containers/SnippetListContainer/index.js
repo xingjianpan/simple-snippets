@@ -18,41 +18,11 @@ class SnippetListContainer extends Component {
     this.props.setIgnoreLastFetch(true);
   }
 
-  fetchMore(url) {
-    this.props.fetchList(url);
-  }
-
-
-  renderButton() {
-    if (this.props.nextHref && this.props.prevHref) {
-      return (
-        <div>
-          <span>
-            <a href="#" onClick={() => { this.fetchMore(this.props.prevHref); }}>
-              Previous Page
-            </a>
-          </span>
-          {' '}
-          <span className="page-control">
-            <a href="#" onClick={() => { this.fetchMore(this.props.nextHref); }}>
-              Next Page
-            </a>
-          </span>
-        </div>
-      );
-    } else if (this.props.nextHref) {
-      return <a href="#" onClick={() => { this.fetchMore(this.props.nextHref); }}>Next Page</a>
-    } else if (this.props.prevHref) {
-      return <a href="#" onClick={() => { this.fetchMore(this.props.prevHref); }}>Previous Page</a>
-    }
-
-    return <p></p>;
-  }
 
   handleInfiniteLoad(url) {
     if (this.props.hasMoreToLoad) {
       this.props.infiniteLoad(url);
-    };
+    }
   }
 
   elementInfiniteLoad() {
