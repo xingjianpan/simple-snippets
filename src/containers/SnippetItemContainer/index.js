@@ -18,7 +18,6 @@ class SnippetItemContainer extends Component {
     }
   }
 
-
   handleEdit() {
     const currentPath = this.props.location.pathname;
     browserHistory.push(`${currentPath}/edit`);

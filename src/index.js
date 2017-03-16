@@ -12,6 +12,7 @@ import EditSnippet from './containers/EditSnippet';
 import SnippetItem from './containers/SnippetItemContainer';
 import UserSnippets from './containers/UserSnippetsContainer';
 import PublicSnippets from './containers/PublicSnippetsContainer';
+import SearchSnippets from './components/SearchSnippet';
 import { getUserDetails } from './actions';
 import configureStore from './stores/configureStore';
 // css
@@ -38,6 +39,7 @@ ReactDOM.render(
         <Route path="snippets/add" component={requireAuth(AddSnippet)} />
         <Route path="snippet/:snippetId/edit" component={requireAuth(EditSnippet)} />
         <Route path="snippets/my" component={UserSnippets} />
+        <Route path="language/:language" component={SearchSnippets} />
       </Route>
     </Router>
   </Provider>

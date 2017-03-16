@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Loading from 'react-loading';
 import Infinite from 'react-infinite';
+import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad } from '../../actions';
 import SnippetLink from '../../components/SnippetLink';
 
+
 class SnippetListContainer extends Component {
   componentDidMount() {
     if (!this.props.ignoreLastFetch) {
+      this.props.fetchList(this.props.targetUrl);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const oldUrl = prevProps.targetUrl;
+    const newUrl = this.props.targetUrl;
+    if (oldUrl !== newUrl) {
       this.props.fetchList(this.props.targetUrl);
     }
   }
@@ -43,6 +53,13 @@ class SnippetListContainer extends Component {
     document.title = 'Snippets Management';
     return (
       <div className="main">
+        <ul>
+          <Link to='/language/python'>Python3</Link>
+          {' '}
+          <Link to='/language/js'>Javascript</Link>
+          {' '}
+          <Link to='/language/sql'>Sql</Link>
+        </ul>
         <Infinite
           elementHeight={150}
           containerHeight={300}
