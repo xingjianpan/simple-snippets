@@ -46,7 +46,8 @@ export default (state = INITIAL_STATE, action) => {
     case actionTypes.INFINITE_LOAD_END_OF_LIST:
       return { ...state,
         isInfiniteLoading: false,
-        hasMoreToLoad: false
+        hasMoreToLoad: false,
+        snippets: [...state.snippets, ...action.payload.data.results],
       };
     default:
       return state;

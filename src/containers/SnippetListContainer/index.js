@@ -60,6 +60,12 @@ class SnippetListContainer extends Component {
     return <div className="infinite-list-item"> Loading... </div>;
   }
 
+  renderEndOfList() {
+    if (!this.props.hasMoreToLoad) {
+      return <div> End of list </div>;
+    }
+    return ;
+  }
 
   render() {
     if (this.props.hasErrored) {
@@ -70,25 +76,28 @@ class SnippetListContainer extends Component {
     }
     document.title = 'Snippets Management';
     return (
-      <Infinite
-        elementHeight={150}
-        containerHeight={300}
-        useWindowAsScrollContainer
-        infiniteLoadBeginEdgeOffset={60}
-        onInfiniteLoad={() =>{ this.handleInfiniteLoad(this.props.nextHref) }}
-        loadingSpinnerDelegate={this.props.isInfiniteLoading && this.elementInfiniteLoad()}
-        isInfiniteLoading={this.props.isInfiniteLoading}
-        timeScrollStateLastsForAfterUserScrolls={1000}
-        className="main"
-      >
-        {this.props.snippets.map(snippet =>
-          <SnippetLink
-            key={snippet.id}
-            {...snippet}
-            onClick={(id) => { browserHistory.push(`snippet/${snippet.id}`); }}
-          />,
-        )}
-      </Infinite>
+      <div className="main">
+        <Infinite
+          elementHeight={150}
+          containerHeight={300}
+          useWindowAsScrollContainer
+          infiniteLoadBeginEdgeOffset={60}
+          onInfiniteLoad={() =>{ this.handleInfiniteLoad(this.props.nextHref) }}
+          loadingSpinnerDelegate={this.props.isInfiniteLoading && this.elementInfiniteLoad()}
+          isInfiniteLoading={this.props.isInfiniteLoading}
+          timeScrollStateLastsForAfterUserScrolls={1000}
+
+        >
+          {this.props.snippets.map(snippet =>
+            <SnippetLink
+              key={snippet.id}
+              {...snippet}
+              onClick={(id) => { browserHistory.push(`snippet/${snippet.id}`); }}
+            />,
+          )}
+        </Infinite>
+        { this.renderEndOfList()}
+      </div>
     );
   }
 }

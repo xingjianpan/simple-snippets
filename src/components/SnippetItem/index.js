@@ -3,7 +3,7 @@ import Frame from 'react-frame-component';
 import SnippetLink from '../SnippetLink'
 
 const SnippetItem = ({ snippet, highlightCode }) => {
-  console.log(snippet)
+  // console.log(snippet)
   return (
     <div className="snippet-page">
       <h4>Information</h4>

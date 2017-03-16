@@ -61,6 +61,13 @@ export const infiniteLoading = (bool) => {
   };
 };
 
+export const infiniteLoadEndOfList = (response) => {
+  return {
+    type: actionTypes.INFINITE_LOAD_END_OF_LIST,
+    payload: response,
+  };
+};
+
 export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
   return (dispatch) => {
     dispatch(infiniteLoading(true));
@@ -69,7 +76,7 @@ export const infiniteLoad = (url = `${SNIPPET_ROOT_URL}/snippets/`) => {
         if (response.data.next) {
           dispatch(infiniteLoadSuccess(response));
         } else {
-          dispatch({ type: actionTypes.INFINITE_LOAD_END_OF_LIST });
+          dispatch(infiniteLoadEndOfList(response));
         }
       });
   };
