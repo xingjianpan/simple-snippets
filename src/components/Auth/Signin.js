@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {Field, reduxForm} from 'redux-form'
-import * as actions from '../../actions'
-import { connect } from 'react-redux'
-
-
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { routerActions } from 'react-router-redux';
+import { clearAuthError,signinUser } from '../../actions';
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
@@ -14,11 +13,26 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   </div>
 )
 
-
+// https://github.com/mjrussell/redux-auth-wrapper/blob/master/examples/localStorage/components/Login.js
 class Signin extends Component {
   componentWillMount() {
-    this.props.clearAuthError()
+    this.props.clearAuthError();
+    const { isAuthenticated, replace, redirect } = this.props;
+    if (isAuthenticated) {
+      replace(redirect);
+    }
   }
+
+  componentWillReceiveProps(nextProps) {
+
+    const { isAuthenticated, replace, redirect } = nextProps;
+    const { isAuthenticated: wasAuthenticated } = this.props;
+    if (!wasAuthenticated && isAuthenticated) {
+      replace(redirect);
+    }
+  }
+
+
   renderAlert() {
     if (this.props.errorMessage){
       return (
@@ -58,12 +72,17 @@ class Signin extends Component {
 //   form: 'signin',
 // })(Signin)
 
-function mapStateToProps(state) {
-  return {errorMessage: state.auth.error}
-}
+function mapStateToProps(state, ownProps) {
+  return {
+    isAuthenticated: state.auth.authenticated,
+    errorMessage: state.auth.error,
+    redirect: ownProps.location.query.redirect || '/',
+  };
+};
+
 Signin = reduxForm({form:'signin'})(Signin)
 // connect Signinform with actions using 'connect'
-Signin = connect(mapStateToProps, actions)(Signin)
+Signin = connect(mapStateToProps, { clearAuthError, signinUser, replace: routerActions.replace })(Signin)
 
 // do not forget to export default
 export default Signin

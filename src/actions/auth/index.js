@@ -59,7 +59,7 @@ export function signinUser({ email, password }) {
         // - save the JWT token, use localstorage
         localStorage.setItem('token', token);
         // - redirect to the route /feature
-        browserHistory.push('/');
+        // browserHistory.push('/');
         dispatch(showNotification('You have successfully signed in!'))
       })
       .catch(() => {
