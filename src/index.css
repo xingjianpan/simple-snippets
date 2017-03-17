@@ -1,8 +1,4 @@
 #root {
-  font-family: Georgia, "Times New Roman",
-  "Microsoft YaHei", "微软雅黑",
-  STXihei, "华文细黑",
-  serif;
+  font-family: Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif;
+  margin-left: 200px;
 }
-
-
