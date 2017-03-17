@@ -1,3 +1,2 @@
 # Use a seperate page for search
 # Use django-filter with rest-framework (https://django-filter.readthedocs.io/en/develop/guide/rest_framework.html)
-# https://github.com/mjrussell/redux-auth-wrapper

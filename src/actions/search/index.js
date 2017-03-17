@@ -24,10 +24,23 @@ export const searchSnippetsFailed = (bool) => {
   };
 };
 
-export const searchSnippets = ({searchTerm}) => {
+// export const searchSnippets = ({searchTerm}) => {
+//   return (dispatch) => {
+//     dispatch(searchSnippetsSearching(true));
+//     axios.get(`${SEARCH_SNIPPETS_URL}/${searchTerm}/`, { headers: { Authorization: `Token ${localStorage.getItem('token')}` } })
+//       .then((response) => {
+//         dispatch(searchSnippetsSuccess(response));
+//       })
+//       .catch(() => dispatch(searchSnippetsFailed(true)));
+//   };
+// };
+
+export const searchSnippets = (formProps) => {
+  const title = formProps.title === undefined ? '' : formProps.title;
+  const description = formProps.description === undefined ? '' : formProps.description;
   return (dispatch) => {
     dispatch(searchSnippetsSearching(true));
-    axios.get(`${SEARCH_SNIPPETS_URL}/${searchTerm}/`, { headers: { Authorization: `Token ${localStorage.getItem('token')}` } })
+    axios.get(`${SEARCH_SNIPPETS_URL}/?title=${title}&description=${description}`, { headers: { Authorization: `Token ${localStorage.getItem('token')}` } })
       .then((response) => {
         dispatch(searchSnippetsSuccess(response));
       })

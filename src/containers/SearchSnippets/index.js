@@ -9,8 +9,9 @@ import SnippetLink from '../../components/SnippetLink';
 
 const validate = (values) => {
   const errors = {};
-  if (!values.searchTerm) {
-    errors.searchTerm = 'required field';
+  if (!values.title && !values.description) {
+    errors.title = 'please input at least one ';
+    errors.description = 'please input at least one';
   }
   return errors;
 };
@@ -18,6 +19,7 @@ const validate = (values) => {
 class SearchSnippet extends Component {
 
   handleFormSubmit(formProps) {
+    // console.log(formProps)
     this.props.searchSnippets(formProps);
   }
 
@@ -44,7 +46,10 @@ class SearchSnippet extends Component {
       return(
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="additem-form">
           <fieldset className="form-group">
-            <Field label="SearchTerm" name="searchTerm" component={renderField} type="text" />
+            <Field label="Title" name="title" component={renderField} type="text" />
+          </fieldset>
+          <fieldset className="form-group">
+            <Field label="Description" name="description" component={renderField} type="text" />
           </fieldset>
           {this.renderAlert()}
           <button action="submit" className="btn btn-primary">Search Snippet</button>
