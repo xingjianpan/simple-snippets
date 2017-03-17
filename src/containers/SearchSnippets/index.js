@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import Loading from 'react-loading';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { searchSnippets } from '../../actions';
+import { searchSnippets, resetForm } from '../../actions';
 import { renderField } from '../../helpers';
 import SnippetLink from '../../components/SnippetLink';
 
@@ -20,6 +20,13 @@ class SearchSnippet extends Component {
   handleFormSubmit(formProps) {
     this.props.searchSnippets(formProps);
   }
+
+
+  componentWillUnmount() {
+    // console.log('will unmount');
+    this.props.resetForm();
+  }
+
 
   renderAlert() {
     if (this.props.errorMessage) {
@@ -91,7 +98,7 @@ SearchSnippet = reduxForm({
   validate,
 })(SearchSnippet);
 
-SearchSnippet = connect(mapStateToProps, { searchSnippets })(SearchSnippet);
+SearchSnippet = connect(mapStateToProps, { searchSnippets, resetForm })(SearchSnippet);
 
 // do not forget to export default
 export default SearchSnippet;

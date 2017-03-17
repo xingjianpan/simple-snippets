@@ -35,3 +35,8 @@ export const searchSnippets = ({searchTerm}) => {
   };
 };
 
+export const resetForm = () => {
+  return {
+    type: actionTypes.RESET_SEARCH_FORM,
+  };
+};

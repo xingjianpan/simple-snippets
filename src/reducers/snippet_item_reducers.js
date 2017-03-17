@@ -20,6 +20,6 @@ export default (state = INITIAL_STATE, action) => {
     case actionTypes.FETCH_HIGHLIGHT_SUCCESS:
       return { ...state, highlightCode: action.payload.data };
     default:
-      return state;
+      return { ...state };
   }
 };

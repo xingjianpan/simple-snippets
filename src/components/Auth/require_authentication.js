@@ -35,16 +35,3 @@ export default function(ComposedComponent) {
   return connect(mapStateToProps)(Authentication)
 }
 
-
-/*
-// In some other location .... Not in this file...
-// We want to use this HOC
-
-import Authentication // This is my HOC
-import Resouces // This is the component i want to wrap
-
-const ComposedComponent = Authentication(Resouces)
-
-// in some render method...
-<ComposedComponent resouces={resouceList} />
-*/

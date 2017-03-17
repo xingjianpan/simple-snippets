@@ -2,11 +2,9 @@ import * as actionTypes from '../constants/actionTypes';
 
 const INITIAL_STATE = {
   isSearching: false,
-  snippets: [],
   hasErrored: false,
-  nextHref: null,
-  prevHref: null,
   error: '',
+  snippets: [],
 };
 
 
@@ -24,7 +22,9 @@ export default (state = INITIAL_STATE, action) => {
       };
     case actionTypes.SEARCH_SNIPPETS_FAIL:
       return { ...state, hasErrored: true };
-    default:
+    case actionTypes.RESET_SEARCH_FORM:
       return INITIAL_STATE;
+    default:
+      return { ...state };
   }
 };

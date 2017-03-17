@@ -15,6 +15,6 @@ export default (state = INITIAL_STATE, action) => {
     case actionTypes.SHOW_NOTIFICATION:
       return { ...state, isActive: true, message: action.payload };
     default:
-      return state;
+      return { ...state };
   }
 };
