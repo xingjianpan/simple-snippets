@@ -13,12 +13,6 @@ class Header extends Component {
       // show a link to sign out
       return (
         [
-        <li className="nav-item" key={2}>
-          <Link className="nav-link" to="/snippets/add">Add Snippet</Link>
-        </li>,
-        <li className="nav-item" key={3}>
-          <Link className="nav-link" to="/snippets/my">My Snippets</Link>
-        </li>,
         <li className="nav-item" key={1}>
           <Link className="nav-link" to="/signout">Sign Out</Link>
         </li>,
@@ -28,10 +22,10 @@ class Header extends Component {
     return (
     [
       <li className="nav-item" key={1}>
-        <Link className="nav-link" to="/signin">Sign In</Link>
+        <Link className="nav-link" to="/login">Log In</Link>
       </li>,
       <li className="nav-item" key={2}>
-        <Link className="nav-link" to="/signup">Sign Up</Link>
+        <Link className="nav-link" to="/signup">Register</Link>
       </li>,
     ]
     );
@@ -42,8 +36,14 @@ class Header extends Component {
       <nav className="navbar navbar-light">
         <Link to="/" className="navbar-brand">Home</Link>
         <ul className="nav navbar-nav">
-          <li className="nav-item" key={3}>
+          <li className="nav-item" key={1}>
             <Link className="nav-link" to="/search">Search Snippets</Link>
+          </li>
+          <li className="nav-item" key={2}>
+            <Link className="nav-link" to="/snippets/add">Add Snippet</Link>
+          </li>
+          <li className="nav-item" key={3}>
+            <Link className="nav-link" to="/snippets/my">My Snippets</Link>
           </li>
           {this.authButton()}
         </ul>
