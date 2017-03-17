@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory, pushState } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 import { routerActions } from 'react-router-redux';
 import App from './components/App';
-import requireAuth from './components/Auth/require_authentication';
+// import requireAuth from './components/Auth/require_authentication';
 import Signin from './components/Auth/Signin';
 import Signout from './components/Auth/Signout';
 import Signup from './components/Auth/Signup';
@@ -24,7 +24,7 @@ import * as actionTypes from './constants/actionTypes';
 import './index.css';
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(browserHistory, store);
 const token = localStorage.getItem('token');
 // if we have a token, consider the use to be signin
 if (token) {
@@ -36,8 +36,7 @@ if (token) {
 
 // Redirects to /login by default
 const UserIsAuthenticated = UserAuthWrapper({
-  authSelector: state => state.auth,
-  predicate: auth => auth.authenticated,
+  authSelector: state => state.auth.user,
   redirectAction: routerActions.replace,
   wrapperDisplayName: 'UserIsAuthenticated',
 })
