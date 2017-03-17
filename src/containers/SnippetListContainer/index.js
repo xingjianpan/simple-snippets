@@ -4,7 +4,7 @@ import Loading from 'react-loading';
 import Infinite from 'react-infinite';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
-import { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad } from '../../actions';
+import { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad, resetList } from '../../actions';
 import SnippetLink from '../../components/SnippetLink';
 
 
@@ -15,12 +15,28 @@ class SnippetListContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    // console.log('start---------------------');
+    // console.log('nextProps:', nextProps);
+    // console.log('thisProps:', this.props);
+    // console.log('end---------------------');
+  }
+
+
   componentDidUpdate(prevProps) {
     const oldUrl = prevProps.targetUrl;
     const newUrl = this.props.targetUrl;
+
     if (oldUrl !== newUrl) {
+      // console.log('will update');
+      this.props.resetList();
       this.props.fetchList(this.props.targetUrl);
     }
+  }
+
+  componentWillUnmount() {
+    // console.log('will unmount');
+    this.props.resetList();
   }
 
   handleInfiniteLoad(url) {
@@ -107,5 +123,5 @@ const mapStateToPros = (state) => {
 };
 
 export default connect(mapStateToPros,
-  { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad })(SnippetListContainer);
+  { fetchList, setIgnoreLastFetch, hideNotification, infiniteLoad, resetList })(SnippetListContainer);
 
