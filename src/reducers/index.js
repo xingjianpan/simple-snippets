@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { routerReducer } from 'react-router-redux';
 import authReducer from './auth_reducers';
 import notificationReducer from './notification_reducers';
 import snippetListReducer from './snippet_list_reducers';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   snippet_list: snippetListReducer,
   snippet: snippetItemReducer,
   search: searchSnippetsReducer,
+  routing: routerReducer,
 });
 
 export default rootReducer;

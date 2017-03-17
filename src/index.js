@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux'
 import App from './components/App';
 import requireAuth from './components/Auth/require_authentication';
 import Signin from './components/Auth/Signin';
@@ -20,6 +21,7 @@ import configureStore from './stores/configureStore';
 import './index.css';
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store)
 const token = localStorage.getItem('token');
 // if we have a token, consider the use to be signin
 if (token) {
@@ -30,7 +32,7 @@ if (token) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={PublicSnippets} />
         <Route path="signin" component={Signin} />
