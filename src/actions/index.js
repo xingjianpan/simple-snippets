@@ -2,6 +2,7 @@ import { signupUser, signinUser, signoutUser, clearAuthError, getUserDetails } f
 import { hideNotification } from './notification';
 import { fetchList, setIgnoreLastFetch, infiniteLoad, resetList } from './snippet-list';
 import { addItem, editItem, deleteItem, fetchItem } from './snippet';
+import { searchSnippets } from './search';
 
 export {
   signupUser,
@@ -18,4 +19,5 @@ export {
   fetchItem,
   infiniteLoad,
   resetList,
+  searchSnippets,
 };

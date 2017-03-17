@@ -19,6 +19,7 @@ const validate = (values) => {
 class AddSnippet extends Component {
 
   handleFormSubmit(formProps) {
+    console.log(formProps)
     this.props.addItem(formProps);
   }
 

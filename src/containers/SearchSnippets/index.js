@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Loading from 'react-loading';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { searchSnippets } from '../../actions';
 import { renderField } from '../../helpers';
+import SnippetLink from '../../components/SnippetLink';
 
 const validate = (values) => {
   const errors = {};
-  if (!values.title) {
-    errors.title = 'required field';
-  }
-  if (!values.code) {
-    errors.code = 'required field';
+  if (!values.searchTerm) {
+    errors.searchTerm = 'required field';
   }
   return errors;
 };
@@ -32,23 +32,58 @@ class SearchSnippet extends Component {
     }
   }
 
+  renderForm() {
+      const { handleSubmit } = this.props;
+      return(
+        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="additem-form">
+          <fieldset className="form-group">
+            <Field label="SearchTerm" name="searchTerm" component={renderField} type="text" />
+          </fieldset>
+          {this.renderAlert()}
+          <button action="submit" className="btn btn-primary">Search Snippet</button>
+        </form>
+        )
+  }
+
+  renderSearchResults() {
+    if (this.props.hasErrored) {
+      return <p>Sorry, we cannot search any snippets, please refresh。</p>;
+    }
+    if (this.props.isSearching) {
+      return <p>Searching...</p>;
+    }
+    return (
+      <div>
+        {this.props.snippets.map(snippet =>
+          <SnippetLink
+            key={snippet.id}
+            {...snippet}
+            onClick={(id) => { browserHistory.push(`snippet/${snippet.id}`); }}
+          />,
+        )}
+      </div>
+    )
+  }
   render() {
-    const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="additem-form">
-        <fieldset className="form-group">
-          <Field label="SearchTerm" name="searchTerm" component={renderField} type="text" />
-        </fieldset>
-        {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Search Snippet</button>
-      </form>
+      <div>
+        {this.renderForm()}
+        {this.renderSearchResults()}
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.snippet_list.error };
+  const { isSearching, snippets, hasErrored, nextHref, prevHref } = state.search;
+  return {
+    isSearching,
+    snippets,
+    hasErrored,
+    nextHref,
+    prevHref,
+  };
 }
 
 SearchSnippet = reduxForm({
