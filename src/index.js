@@ -10,6 +10,7 @@ import Signup from './components/Auth/Signup';
 import AddSnippet from './containers/AddSnippet';
 import EditSnippet from './containers/EditSnippet';
 import SnippetItem from './containers/SnippetItemContainer';
+import SearchSnippets from './containers/SearchSnippets';
 import UserSnippets from './components/UserSnippets';
 import PublicSnippets from './components/PublicSnippets';
 import FilterSnippets from './components/FilterSnippets';
@@ -40,6 +41,7 @@ ReactDOM.render(
         <Route path="snippet/:snippetId/edit" component={requireAuth(EditSnippet)} />
         <Route path="snippets/my" component={UserSnippets} />
         <Route path="language/:language" component={FilterSnippets} />
+        <Route path="search" component={SearchSnippets} />
       </Route>
     </Router>
   </Provider>

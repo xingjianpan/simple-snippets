@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import * as actionTypes from '../../constants/actionTypes';
-import { SNIPPET_ROOT_URL } from '../../services/api';
-import { fetchList, setIgnoreLastFetch } from '../../actions/snippet-list';
+import { SNIPPET_ROOT_URL, PUBLIC_SNIPPETS_URL } from '../../services/api';
+import { fetchList } from '../../actions/snippet-list';
 
 export const addItem = ({ title, code, linenos, language, style, ispublic, description }) => {
   return (dispatch) => {
@@ -27,7 +27,6 @@ export const editItem = (item) => {
       { headers: { Authorization: `Token ${localStorage.getItem('token')}` } },
     )
     .then((response) => {
-      dispatch(setIgnoreLastFetch(false));
       browserHistory.push(`/snippet/${id}`);
     });
   };
@@ -42,8 +41,6 @@ export const deleteItem = (item) => {
       { headers: { Authorization: `Token ${localStorage.getItem('token')}`} },
     ).then(() => {
       browserHistory.push('/');
-      // refresh
-      dispatch(fetchList(SNIPPET_ROOT_URL));
     });
   };
 };

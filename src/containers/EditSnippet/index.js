@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { editItem, fetchItem } from '../../actions';
-
+import { renderField } from '../../helpers';
 
 const validate = (values) => {
   const errors = {};
@@ -13,23 +13,6 @@ const validate = (values) => {
     errors.code = 'required field';
   }
   return errors;
-};
-
-
-// http://stackoverflow.com/questions/40815172/redux-form-textarea-error-handling
-const renderField = ({ input, name, label, type, textarea, meta: { touched, error, warning, invalid } }) => {
-  const textareaType = <textarea {...input} placeholder={label} type={type} className={`form-control ${touched && invalid ? 'has-danger' : ''}`} />;
-  const inputType = <input {...input} placeholder={label} type={type} className={`form-control ${touched && invalid ? 'has-danger' : ''}`} />;
-
-  return (
-    <div className="form-fields">
-      <label htmlFor={name} >{label}</label>
-      <div>
-        {textarea ? textareaType : inputType}
-        {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-      </div>
-    </div>
-  );
 };
 
 
