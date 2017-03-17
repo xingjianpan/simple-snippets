@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 
 export default (state = INITIAL_STATE, action) => {
-  console.log('action: ', action);
+  // console.log('action: ', action);
   switch (action.type) {
     case actionTypes.SEARCH_SNIPPETS_SEARCHING:
       return { ...state, isSearching: true };
